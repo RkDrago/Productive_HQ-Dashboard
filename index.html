@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>ProductiveHQ Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="public/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="bg-img">
+    </div>
+    <aside class="sidebar">
+        <div class="side-nav">
+            <img class="logo-img" src="public/lable-logo.png" style="width: 100%; margin-top: 10px;" alt="">
+
+            <nav>
+                <a class="nav-item active" data-target="dashboard-view" data-title="">
+                    <i class="ri-dashboard-line outline-icon"></i>
+                    <i class="ri-dashboard-fill fill-icon"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a class="nav-item" data-target="todo-view" data-title="Todo List">
+                    <i class="ri-task-line outline-icon"></i>
+                    <i class="ri-task-fill fill-icon"></i>
+                    <span>Todo</span>
+                </a>
+                <a class="nav-item" data-target="planner-view" data-title="Daily Planner">
+                    <i class="ri-calendar-line outline-icon"></i>
+                    <i class="ri-calendar-fill fill-icon"></i>
+                    <span>Planner</span>
+                </a>
+                <a class="nav-item" data-target="goals-view" data-title="Daily Goals">
+                    <i class="ri-target-line outline-icon"></i>
+                    <i class="ri-target-fill fill-icon"></i>
+                    <span>Goals</span>
+                </a>
+                <a class="nav-item" data-target="pomodoro-view" data-title="Pomodoro Timer">
+                    <i class="ri-alarm-line outline-icon"></i>
+                    <i class="ri-alarm-fill fill-icon"></i>
+                    <span>Pomodoro</span>
+                </a>
+                <a class="nav-item" data-target="weather-view" data-title="Weather Report">
+                    <i class="ri-thunderstorms-line outline-icon"></i>
+                    <i class="ri-thunderstorms-fill fill-icon"></i>
+                    <span>Weather</span>
+                </a>
+                <a class="nav-item" data-target="quotes-view" data-title="Today's Quote">
+                    <i class="ri-chat-quote-line outline-icon"></i>
+                    <i class="ri-chat-quote-fill fill-icon"></i>
+                    <span>Quotes</span>
+                </a>
+            </nav>
+        </div>
+    </aside>
+    <main class="main">
+        <header>
+            <h1 class="view-section-title"></h1>
+            <div class="theme" id="darkModeToggle">
+                <i class="ri-sun-line"></i>
+            </div>
+        </header>
+        <section class="view-section active" id="dashboard-view">
+            <div class="dashboard-stats">
+                <div class="dashboard-card">
+                    <i class="ri-task-line"></i>
+                    <h3>Tasks</h3>
+                    <h2 id="dashboardTasks">
+                        0 / 0
+                    </h2>
+                </div>
+                <div class="dashboard-card">
+                    <i class="ri-target-line"></i>
+                    <h3>Goals</h3>
+                    <h2 id="dashboardGoals">
+                        0 / 0
+                    </h2>
+                </div>
+                <div class="dashboard-card">
+                    <i class="ri-alarm-line"></i>
+                    <h3>Focus Sessions</h3>
+                    <h2 id="dashboardPomodoro">
+                        0
+                    </h2>
+                </div>
+                <div class="dashboard-card">
+                    <i class="ri-line-chart-line"></i>
+                    <h3>Productivity</h3>
+                    <h2 id="dashboardProductivity">
+                        0%
+                    </h2>
+                </div>
+            </div>
+            <div class="dashboard-top">
+                <div>
+                    <p id="liveDate" style="font-weight: 600;"></p>
+                </div>
+                <div class="live-time">
+                    <h2 id="liveClock"></h2>
+                </div>
+            </div>
+            <div id="dashboardQuote"></div>
+        </section>
+        <section class="view-section" id="todo-view">
+            <div class="todo-header">Stay organized and get things done.</div>
+            <div class="todo-input-container">
+                <input type="text" id="taskInput" placeholder="What needs to be done today?">
+                <button id="addTaskBtn">
+                    <i class="ri-add-line"></i>
+                    Add Task
+                </button>
+            </div>
+            <div class="todo-toolbar">
+                <div class="filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Active</button>
+                    <button class="filter-btn">Completed</button>
+                </div>
+                <div class="search-box">
+                    <i class="ri-search-line"></i>
+                    <input type="text" placeholder="Search task..." id="searchTask">
+                </div>
+            </div>
+            <ul id="taskList" class="task-list">
+            </ul>
+            <div class="todo-footer">
+                <div class="progress-info">
+                    <span id="progressText" style="font-size: medium;">
+                        0 of 0 completed
+                    </span>
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill">
+                        </div>
+                    </div>
+                </div>
+                <button id="clearCompleted">
+                    Clear Completed
+                </button>
+
+            </div>
+        </section>
+        <section class="view-section" id="planner-view">
+            <div class="planner-header">
+                <p>Plan every hour of your day.</p>
+                <button id="clearPlanner">Clear Planner</button>
+            </div>
+            <h3 id="plannerDate"></h3>
+            <div id="plannerContainer"></div>
+        </section>
+        <section class="view-section" id="goals-view">
+            <div class="goals-header">
+                <p>Small goals lead to big achievements.</p>
+                <button id="clearGoals">
+                    Clear All
+                </button>
+            </div>
+            <div class="goal-input-container">
+                <input type="text" id="goalInput" placeholder="Add a daily goal...">
+                <button id="addGoalBtn">
+                    <i class="ri-add-line"></i>
+                    Add Goal
+                </button>
+            </div>
+            <ul id="goalList"></ul>
+            <div class="goal-footer" style="padding-top: 20px; padding-left: 5px;">
+                <div>
+                    <span id="goalProgressText" style="font-size: medium;">
+                        0 of 0 Completed
+                    </span>
+                    <div class="goal-progress">
+                        <div id="goalProgressFill"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="view-section" id="pomodoro-view">
+            <div class="pomodoro-container">
+                <p style="color: gray;">Stay focused. Take breaks. Repeat.</p>
+                <div class="timer-modes">
+                    <button class="mode-btn active" data-time="25">
+                        Focus
+                    </button>
+                    <button class="mode-btn" data-time="5">
+                        Short Break
+                    </button>
+                    <button class="mode-btn" data-time="15">
+                        Long Break
+                    </button>
+                </div>
+                <div class="timer-circle">
+                    <svg width="260" height="260">
+                        <circle class="bg-circle" cx="130" cy="130" r="110"></circle>
+                        <circle id="progressCircle" class="progress-circle" cx="130" cy="130" r="110"></circle>
+                    </svg>
+                    <div class="timer-display" id="timerDisplay">
+                        25:00
+                    </div>
+                </div>
+                <div class="timer-controls">
+                    <button id="startPauseBtn">
+                        <i class="ri-play-fill"></i>
+                    </button>
+                    <button id="resetBtn">
+                        <i class="ri-refresh-line"></i>
+                    </button>
+                    <button id="skipBtn">
+                        <i class="ri-skip-forward-fill"></i>
+                    </button>
+                </div>
+                <div class="session-info">
+                    Sessions Completed:
+                    <span id="sessionCount">0</span>
+                </div>
+            </div>
+        </section>
+        <section class="view-section" id="weather-view">
+            <div class="weather-header">
+                Check live weather conditions.
+            </div>
+            <div class="weather-search">
+                <input type="text" id="cityInput" placeholder="Enter city name...">
+                <button id="searchWeather">
+                    <i class="ri-search-line"></i>
+                </button>
+            </div>
+            <div class="weather-card">
+                <img id="weatherIcon" src="" alt="">
+                <h1 id="temperature">--°C</h1>
+                <h3 id="cityName">City</h3>
+                <p id="description">
+                    Weather Description
+                </p>
+            </div>
+            <div class="weather-details">
+                <div class="detail-card">
+                    <i class="ri-water-percent-line"></i>
+                    <span id="humidity">--%</span>
+                    <small>Humidity</small>
+                </div>
+                <div class="detail-card">
+                    <i class="ri-windy-line"></i>
+                    <span id="wind">-- km/h</span>
+                    <small>Wind</small>
+                </div>
+                <div class="detail-card">
+                    <i class="ri-temp-hot-line"></i>
+                    <span id="feelsLike">--°C</span>
+                    <small>Feels Like</small>
+                </div>
+                <div class="detail-card">
+                    <i class="ri-eye-line"></i>
+                    <span id="visibility">-- km</span>
+                    <small>Visibility</small>
+                </div>
+            </div>
+        </section>
+        <section class="view-section" id="quotes-view">
+            <div class="quotes-header">One quote can change your entire day.</div>
+            <div class="quote-card">
+                <i class="ri-double-quotes-l quote-icon"></i>
+                <p id="quoteText">Click "New Quote" to get inspired.</p>
+                <h4 id="quoteAuthor">—</h4>
+                <div class="quote-buttons">
+                    <button id="newQuoteBtn">
+                        <i class="ri-refresh-line"></i>
+                        New Quote
+                    </button>
+                    <button id="copyQuoteBtn">
+                        <i class="ri-file-copy-line"></i>
+                        Copy
+                    </button>
+                    <button id="favoriteQuoteBtn">
+                        <i class="ri-heart-line"></i>
+                        Favorite
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
