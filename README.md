@@ -9,7 +9,7 @@ ProductiveHQ is a modern productivity dashboard built with **HTML, CSS, and Java
 
 ## 🌐 Live Demo
 
-🔗 **Live:** [https://your-live-demo-link.com](https://phenomenal-otter-07a247.netlify.app/)]
+🔗 **Live:** [ProductiveHQ Dashboard](https://phenomenal-otter-07a247.netlify.app/)
 
 ## ✨ Features
 
