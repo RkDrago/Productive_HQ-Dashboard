@@ -8,6 +8,81 @@ const savedTheme = localStorage.getItem("theme");
 
 const LogoImg = document.querySelector(".logo-img")
 
+
+const taskInput = document.querySelector("#taskInput")
+const addTaskBtn = document.querySelector("#addTaskBtn")
+const taskList = document.querySelector("#taskList")
+const searchTask = document.querySelector("#searchTask")
+
+const progressFill = document.querySelector("#progressFill")
+const progressText = document.querySelector("#progressText")
+
+const clearCompleted = document.querySelector("#clearCompleted")
+
+const filterBtns = document.querySelectorAll(".filter-btn")
+
+let tasks = JSON.parse(localStorage.getItem("tasks")) || []
+
+let currentFilter = "All"
+
+
+const plannerContainer = document.querySelector("#plannerContainer")
+const plannerDate = document.querySelector("#plannerDate")
+const clearPlanner = document.querySelector("#clearPlanner")
+const plannerData = JSON.parse(localStorage.getItem("planner")) || {}
+
+const hours = ["08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM"]
+
+
+const goalInput = document.querySelector("#goalInput")
+const addGoalBtn = document.querySelector("#addGoalBtn")
+const goalList = document.querySelector("#goalList")
+
+const clearGoals = document.querySelector("#clearGoals")
+
+const goalProgressText = document.querySelector("#goalProgressText")
+const goalProgressFill = document.querySelector("#goalProgressFill")
+
+let goals = JSON.parse(localStorage.getItem("goals")) || []
+
+
+const timerDisplay = document.querySelector("#timerDisplay")
+const startPauseBtn = document.querySelector("#startPauseBtn")
+const resetBtn = document.querySelector("#resetBtn")
+const skipBtn = document.querySelector("#skipBtn")
+const progressCircle = document.querySelector("#progressCircle")
+const modeBtns = document.querySelectorAll(".mode-btn")
+const sessionCount = document.querySelector("#sessionCount")
+
+const radius = 110
+const circumference = 2 * Math.PI * radius
+
+progressCircle.style.strokeDasharray = circumference
+
+let duration = 25 * 60
+let timeLeft = duration
+
+let timer = null
+let running = false
+
+let sessions = Number(localStorage.getItem("sessions")) || 0
+sessionCount.textContent = sessions
+
+
+const API_KEY = "462d59775eb8e5e20f3da75bd061488d";
+const cityInput = document.querySelector("#cityInput");
+const searchWeather = document.querySelector("#searchWeather");
+
+
+const quoteText = document.querySelector("#quoteText")
+const quoteAuthor = document.querySelector("#quoteAuthor")
+
+const newQuoteBtn = document.querySelector("#newQuoteBtn")
+const copyQuoteBtn = document.querySelector("#copyQuoteBtn")
+const favoriteQuoteBtn = document.querySelector("#favoriteQuoteBtn")
+
+let currentQuote = null
+
 // For tab manipulation
 
 tabs.forEach((tab) => {
@@ -54,21 +129,6 @@ themeBtn.addEventListener("click", () => {
 
 // For todo list
 
-const taskInput = document.querySelector("#taskInput")
-const addTaskBtn = document.querySelector("#addTaskBtn")
-const taskList = document.querySelector("#taskList")
-const searchTask = document.querySelector("#searchTask")
-
-const progressFill = document.querySelector("#progressFill")
-const progressText = document.querySelector("#progressText")
-
-const clearCompleted = document.querySelector("#clearCompleted")
-
-const filterBtns = document.querySelectorAll(".filter-btn")
-
-let tasks = JSON.parse(localStorage.getItem("tasks")) || []
-
-let currentFilter = "All"
 
 function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks))
@@ -208,12 +268,6 @@ renderTasks()
 
 
 
-const plannerContainer = document.querySelector("#plannerContainer")
-const plannerDate = document.querySelector("#plannerDate")
-const clearPlanner = document.querySelector("#clearPlanner")
-const plannerData = JSON.parse(localStorage.getItem("planner")) || {}
-
-const hours = ["08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM"]
 
 function renderPlanner() {
     plannerContainer.innerHTML = ""
@@ -276,16 +330,6 @@ renderPlanner()
 
 
 
-const goalInput = document.querySelector("#goalInput")
-const addGoalBtn = document.querySelector("#addGoalBtn")
-const goalList = document.querySelector("#goalList")
-
-const clearGoals = document.querySelector("#clearGoals")
-
-const goalProgressText = document.querySelector("#goalProgressText")
-const goalProgressFill = document.querySelector("#goalProgressFill")
-
-let goals = JSON.parse(localStorage.getItem("goals")) || []
 
 function saveGoals() {
     localStorage.setItem("goals", JSON.stringify(goals))
@@ -385,27 +429,6 @@ clearGoals.addEventListener("click", () => {
 
 
 
-const timerDisplay = document.querySelector("#timerDisplay")
-const startPauseBtn = document.querySelector("#startPauseBtn")
-const resetBtn = document.querySelector("#resetBtn")
-const skipBtn = document.querySelector("#skipBtn")
-const progressCircle = document.querySelector("#progressCircle")
-const modeBtns = document.querySelectorAll(".mode-btn")
-const sessionCount = document.querySelector("#sessionCount")
-
-const radius = 110
-const circumference = 2 * Math.PI * radius
-
-progressCircle.style.strokeDasharray = circumference
-
-let duration = 25 * 60
-let timeLeft = duration
-
-let timer = null
-let running = false
-
-let sessions = Number(localStorage.getItem("sessions")) || 0
-sessionCount.textContent = sessions
 
 
 function updateDisplay() {
@@ -497,9 +520,6 @@ updateDisplay();
 
 
 
-const API_KEY = "462d59775eb8e5e20f3da75bd061488d";
-const cityInput = document.querySelector("#cityInput");
-const searchWeather = document.querySelector("#searchWeather");
 
 async function getWeather(city) {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
@@ -595,14 +615,7 @@ const quotes = [
     }
 ];
 
-const quoteText = document.querySelector("#quoteText")
-const quoteAuthor = document.querySelector("#quoteAuthor")
 
-const newQuoteBtn = document.querySelector("#newQuoteBtn")
-const copyQuoteBtn = document.querySelector("#copyQuoteBtn")
-const favoriteQuoteBtn = document.querySelector("#favoriteQuoteBtn")
-
-let currentQuote = null
 
 function showRandomQuote() {
     const random = quotes[Math.floor(Math.random() * quotes.length)];
@@ -640,7 +653,6 @@ favoriteQuoteBtn.addEventListener("click", () => {
 });
 
 showRandomQuote();
-
 
 
 
