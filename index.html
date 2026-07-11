@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    <div class="bg-img">
-    </div>
+    <div class="bg-img"></div>
+    <div class="overlay" id="overlay"></div>
     <aside class="sidebar">
         <div class="side-nav">
             <img class="logo-img" src="public/lable-logo.png" style="width: 100%; margin-top: 10px;" alt="">
@@ -58,12 +58,26 @@
     </aside>
     <main class="main">
         <header>
+            <div class="menu-btn" id="menuBtn">
+                <i class="ri-menu-line"></i>
+            </div>
+
             <h1 class="view-section-title"></h1>
+
             <div class="theme" id="darkModeToggle">
                 <i class="ri-sun-line"></i>
             </div>
+
         </header>
         <section class="view-section active" id="dashboard-view">
+            <div class="dashboard-top">
+                <div>
+                    <p id="liveDate" style="font-weight: 600;"></p>
+                </div>
+                <div class="live-time">
+                    <h2 id="liveClock"></h2>
+                </div>
+            </div>
             <div class="dashboard-stats">
                 <div class="dashboard-card">
                     <i class="ri-task-line"></i>
@@ -94,14 +108,7 @@
                     </h2>
                 </div>
             </div>
-            <div class="dashboard-top">
-                <div>
-                    <p id="liveDate" style="font-weight: 600;"></p>
-                </div>
-                <div class="live-time">
-                    <h2 id="liveClock"></h2>
-                </div>
-            </div>
+            
             <div id="dashboardQuote"></div>
         </section>
         <section class="view-section" id="todo-view">

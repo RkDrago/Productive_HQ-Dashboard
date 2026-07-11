@@ -83,6 +83,27 @@ const favoriteQuoteBtn = document.querySelector("#favoriteQuoteBtn")
 
 let currentQuote = null
 
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.querySelector(".sidebar");
+const overlay = document.getElementById("overlay");
+const navItems = document.querySelectorAll(".nav-item");
+
+menuBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("show");
+    overlay.classList.toggle("show");
+});
+
+overlay.addEventListener("click", closeSidebar);
+
+navItems.forEach(item => {
+    item.addEventListener("click", closeSidebar);
+});
+
+function closeSidebar() {
+    sidebar.classList.remove("show");
+    overlay.classList.remove("show");
+}
+
 // For tab manipulation
 
 tabs.forEach((tab) => {

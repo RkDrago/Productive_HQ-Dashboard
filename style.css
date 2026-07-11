@@ -734,6 +734,9 @@ header {
 }
 
 .dashboard-top {
+    background-color: var(--todoElements);
+    padding: 10px 20px;
+    border-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -776,4 +779,120 @@ header {
 
 .dashboard-panel h3 {
     margin-bottom: 20px;
+}
+
+/* hamburger menu*/
+
+.menu-btn {
+    display: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: var(--nav);
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.463);
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+    z-index: 98;
+}
+
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width:768px) {
+
+    .menu-btn {
+        display: flex;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -280px;
+        top: 0;
+        width: 260px;
+        height: 100vh;
+        z-index: 99;
+        transition: .3s;
+        padding: 20px;
+    }
+
+    .dashboard-top {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .sidebar.show {
+        left: 0;
+    }
+
+    .logo-img {
+        display: block;
+    }
+
+    .side-nav nav {
+        display: block;
+    }
+
+    .nav-item {
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-bottom: 10px;
+    }
+
+    .nav-item span {
+        font-size: 16px;
+    }
+
+    .main {
+        width: 100%;
+    }
+}
+
+
+/* fpr tablet view */
+
+@media (max-width:1024px) {
+    .view-section-title{
+        font-size: larger;
+    }
+
+    .sidebar {
+        width: 220px;
+        padding: 0 16px;
+    }
+
+    .view-section {
+        padding: 28px;
+    }
+
+    header {
+        padding: 24px;
+    }
+
+    #dashboardQuote {
+        width: 100%;
+        font-size: 24px;
+    }
+
+    .weather-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
